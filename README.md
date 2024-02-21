@@ -73,7 +73,7 @@ app/src/main/AndroidManifest.xml
 
 ## 4. Update the app layout
 Update the app's layout to include a VideoView to play both content and ads.
-app/src/main/res/layout/activity_my.xml
+app/src/main/res/layout/activity_main.xml
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -82,7 +82,7 @@ app/src/main/res/layout/activity_my.xml
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MyActivity"
+    tools:context=".MainActivity"
     tools:ignore="MergeRootFrame">
 
     <RelativeLayout
@@ -105,8 +105,8 @@ app/src/main/res/layout/activity_my.xml
 
 
 ## 5. Import IMA into the main activity
-Add the import statements for the IMA SDK. Then, update the MyActivity class to extend AppCompatActivity. The AppCompatActivity class allows for support of newer platform features on older Android devices. Then, add a set of private variables which will be used in the app.
-app/src/main/java/com/example/project name/MyActivity.java
+Add the import statements for the IMA SDK. Then, update the MainActivity class to extend AppCompatActivity. The AppCompatActivity class allows for support of newer platform features on older Android devices. Then, add a set of private variables which will be used in the app.
+app/src/main/java/com/example/project name/MainActivity.java
 
 <pre>
 <code>
@@ -132,7 +132,7 @@ import com.google.ads.interactivemedia.v3.api.ImaSdkSettings;
 import com.google.ads.interactivemedia.v3.api.player.VideoProgressUpdate;
 import java.util.Arrays;
 
-public class MyActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
   private static final String LOGTAG = "IMABasicSample";
   private static final String SAMPLE_VIDEO_URL =
@@ -401,12 +401,12 @@ Overwrite the onCreate method and add the required variable assignments to ini
 * AdsLoader
 This step also creates a VideoAdPlayerAdapter, a class you create later in this guide.
 Finally, set up the play button to request ads, then hide when clicked.
-app/src/main/java/com/example/project name/MyActivity.java
+app/src/main/java/com/example/project name/MainActivity.java
 
 <pre>
 <code>
 
-public class MyActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
   private VideoView videoPlayer;
   private MediaController mediaController;
@@ -415,7 +415,7 @@ public class MyActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_my);
+    setContentView(R.layout.activity_main);
 
     // Create the UI for controlling the video view.
     mediaController = new MediaController(this);
@@ -451,7 +451,7 @@ public class MyActivity extends AppCompatActivity {
 
 ## 10. Add AdsLoader listeners
 Add listeners for addAdErrorListener and addAdsLoadedListener. In the AdsLoadedListener, create the AdsManager, and set up the AdsManager error listener.
-app/src/main/java/com/example/project name/MyActivity.java
+app/src/main/java/com/example/project name/MainActivity.java
 <pre>
 <code>
   @Override
@@ -511,7 +511,7 @@ Listen for IMA ad events with AdsManager.addAdEventListener. Using a switch sta
 * ALL_ADS_COMPLETED
 * CLICKED
 The code snippet includes comments with more information on how to use the events. Once the events are set up, you can call AdsManager.init().
-app/src/main/java/com/example/project name/MyActivity.java
+app/src/main/java/com/example/project name/MainActivity.java
 
 <pre>
 <code>
@@ -581,12 +581,12 @@ app/src/main/java/com/example/project name/MyActivity.java
           
 ## 12. Handle switching between ads and content
 In this section, create the pauseContentForAds and resumeContent methods referenced in the previous steps. These methods will reuse the player to play both content and ads. You will need to keep track of the content position in order to resume playback following the ad break.
-app/src/main/java/com/example/project name/MyActivity.java
+app/src/main/java/com/example/project name/MainActivity.java
 
   <pre>
 <code>
 /** Main activity. */
-public class MyActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
   private void pauseContentForAds() {
     Log.i(LOGTAG, "pauseContentForAds");
@@ -618,11 +618,11 @@ public class MyActivity extends AppCompatActivity {
 
 ## 13. Request ads
 Now add the requestAds method to build an AdsRequest and use it to call AdsLoader.requestAds().
-app/src/main/java/com/example/project name/MyActivity.java
+app/src/main/java/com/example/project name/MainActivity.java
   <pre>
 <code>
 /** Main activity. */
-public class MyActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
   private void requestAds(String adTagUrl) {
     // Create the ads request.
